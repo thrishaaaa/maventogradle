@@ -1,0 +1,21 @@
+trigger:
+- main
+
+pool:
+  name: Default
+
+steps:
+- script: echo "My first Azure Pipeline for Maven project"
+  displayName: 'Say Hello'
+
+- script: mvn clean package
+  displayName: 'Build with Maven'
+  
+- script: mvn test
+  displayName: 'test Maven'
+
+
+- script: |
+    echo "Running the JAR file"
+    java -jar build/libs/MyMavenToGradle-1.0-SNAPSHOT.jar
+  displayName: 'Run JAR'
